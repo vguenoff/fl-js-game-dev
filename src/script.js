@@ -16,10 +16,11 @@ const spriteHight = 523
 let frameX = 0
 let frameY = 0
 
-const staggeredFrames = 10
+const staggeredFrames = 5
 let gameFrame = 0
 
-app.ticker.add(() => {
+app.ticker.add(delta => {
+  console.log({ delta })
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
   // staggering -> we're dividing by 5 so the first 5 are zero (because of Math.floor) then 1
   // staggeredFrames = 10 -> 10 times each frame below (0..10)
@@ -40,5 +41,5 @@ app.ticker.add(() => {
     spriteHight,
   )
 
-  gameFrame += 1
+  gameFrame += delta
 })
