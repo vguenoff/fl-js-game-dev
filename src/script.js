@@ -16,16 +16,16 @@ const spriteHight = 523
 let frameX = 0
 let frameY = 0
 
-const staggeredFrames = 5
+const staggeredFrames = 10
 let gameFrame = 0
 
-app.ticker.add(delta => {
+app.ticker.add(() => {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
   // staggering -> we're dividing by 5 so the first 5 are zero (because of Math.floor) then 1
   // staggeredFrames = 10 -> 10 times each frame below (0..10)
   // 0%7=0, 1%7=1, 2%7=2, 3%7=3, 4%7=4, 5%7=5 6%7=6
   // then again 7%7=0 8%7=1, 9%7=2... 0..6... 0..6... 0..6 looping
-  const position = Math.floor((gameFrame * delta) / staggeredFrames) % 7 // 7 to have 7 frames - 0..6
+  const position = Math.floor(gameFrame / staggeredFrames) % 7 // 7 to have 7 frames - 0..6
   frameX = spriteWidth * position
 
   ctx.drawImage(
